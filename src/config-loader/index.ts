@@ -1,4 +1,4 @@
-export * from './config-loader';
+export *  from './config-loader';
 export * from './arg-loader';
 export * from './env-loader';
 export * from './js-loader';

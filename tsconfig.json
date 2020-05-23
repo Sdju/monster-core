@@ -7,11 +7,32 @@
     "outDir": "./lib",
     "strict": true,
     "esModuleInterop": true,
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types", "./types"]
   },
   "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "**/*.spec.ts"
-  ]
+  ],
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "./tsconfig.json"
+      }
+    },
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "testMatch": [
+      "**/*.test.ts"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
 }

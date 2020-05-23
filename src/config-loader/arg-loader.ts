@@ -6,7 +6,7 @@ export interface ArgLoaderParams {
   options?: Options;
 }
 
-export default function JsonLoader(params: ArgLoaderParams): Loader {
+export function argLoader(params: ArgLoaderParams): Loader {
   return makeLoader(async (loaderParams) => {
     const args = loaderParams.args ?? process.argv;
     return parse(args, loaderParams.options);

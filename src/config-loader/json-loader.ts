@@ -8,7 +8,7 @@ export interface JsonLoaderParams {
   encoding?: string;
 }
 
-export default function JsonLoader(params: JsonLoaderParams): Loader {
+export function jsonLoader(params: JsonLoaderParams): Loader {
   return makeLoader(async (loaderParams) => {
     const options = { encoding: <string>loaderParams.encoding ?? 'UTF-8' };
     const file = <string>await readFile(loaderParams.path, options);
