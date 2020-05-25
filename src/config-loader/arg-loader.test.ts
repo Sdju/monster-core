@@ -1,8 +1,15 @@
-import { argLoader } from "./arg-loader";
+import { argLoader } from './arg-loader';
 
-test('arg-loader/base', async ()=> {
+test('arg-loader/base', async () => {
   const loader = argLoader({
-    args: ['-p', '--part', 'lim', '-fa', '-s=34', '-f=hello']
+    args: ['-p', '--part', 'lim', '-fa', '-s=34', '-f=hello'],
   })
-  console.log(loader())
+  expect(await loader({})).toEqual({
+    _: [],
+    p: true,
+    part: 'lim',
+    f: [true, 'hello'],
+    a: true,
+    s: 34,
+  })
 });

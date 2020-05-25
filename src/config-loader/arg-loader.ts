@@ -1,5 +1,5 @@
 import parse, { Options } from 'yargs-parser';
-import { Loader, makeLoader } from "./loader";
+import { Loader, makeLoader } from './loader';
 
 export interface ArgLoaderParams {
   args: string | string[];
