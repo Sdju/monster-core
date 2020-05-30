@@ -13,7 +13,8 @@ import { CoreInitBeforeConfigLoadedError } from './core-init-before-config-loade
 
 enum CoreEvents {
   RUN_BEFORE = 'run:before',
-  RUN_AFTER = 'run:after',
+  RUN_BEFORE = 'run:before',
+  INIT = 'init',
 }
 
 export class Core extends EventEmitter {
@@ -26,6 +27,7 @@ export class Core extends EventEmitter {
     this.config = await this.loadParams(params);
     await this.loadPlugins(this.config);
     await this.initClient(this.config);
+    await this.emit(Core.Events.INIT);
   }
 
   protected async loadParams(params: LoaderParams): Promise<Config> {
@@ -56,7 +58,7 @@ export class Core extends EventEmitter {
   }
 
   protected async run() {
-
+    this.client.login();
   }
 
   public configLoader: ConfigLoader;
@@ -69,5 +71,5 @@ export class Core extends EventEmitter {
 
   public client!: Client;
 
-  static CoreEvents = CoreEvents;
+  static Events = CoreEvents;
 }

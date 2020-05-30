@@ -1,4 +1,4 @@
-import type { EventEmitter } from './extended-emitter';
+import type { EventEmitter } from './event-emitter';
 
 export class Event {
   constructor(name: string, payload: any = undefined) {

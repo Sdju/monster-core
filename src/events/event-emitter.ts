@@ -1,7 +1,7 @@
 import { EventMiddleware } from './event-middleware';
 import { Listener } from './listener';
 import { Event } from './event';
-import { CancelError } from "./cancel-error";
+import { CancelError } from './cancel-error';
 
 export class EventEmitter {
   on(eventName: string, listener: Listener) {
@@ -22,7 +22,7 @@ export class EventEmitter {
   once(eventName: string, listener: Listener) {
     const cancel = (event: Event) => {
       listener(event);
-      this.off(eventName, listener);
+      this.off(eventName, cancel);
     };
     this.on(eventName, cancel);
   }
@@ -48,7 +48,7 @@ export class EventEmitter {
         }
       }
 
-      const listeners = this.eventMiddlewares.get(eventName);
+      const listeners = this.eventListeners.get(eventName);
       if (listeners instanceof Set) {
         const results = Array
           .from(listeners)
